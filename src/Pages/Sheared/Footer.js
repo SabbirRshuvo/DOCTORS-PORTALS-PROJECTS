@@ -39,10 +39,7 @@ const Footer = () => {
             <footer className="footer footer-center p-4 text-base-content mt-5">
                 <aside>
                     <p>Today's Date: {formattedDate}</p>
-                    <p>
-                        Copyright © {currentYear} - All right reserved by ACME
-                        Industries Ltd
-                    </p>
+                    <p>Copyright © {currentYear} - All right reserved</p>
                 </aside>
             </footer>
         </footer>

@@ -6,7 +6,7 @@ import Treatment from "./Treatment";
 import MakeAppointment from "./MakeAppointment";
 import Testimonials from "./Testimonials";
 import Connected from "./Connected";
-import Footer from "./Footer";
+import Footer from "../Sheared/Footer";
 const Home = () => {
     return (
         <div className="px-12 bg-base-200">
