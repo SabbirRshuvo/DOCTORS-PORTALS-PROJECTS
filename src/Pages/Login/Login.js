@@ -5,7 +5,7 @@ import {
     useSignInWithGithub,
     useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import Google from "../Sheared/Google";
 import Facebook from "../Sheared/Facebook";
@@ -44,7 +44,6 @@ const Login = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     if (user) {
         console.log(user);
-        navigate("/");
     }
     const [signInWithFacebook] = useSignInWithFacebook(auth);
     const [signInWithGithub] = useSignInWithGithub(auth);

@@ -1,5 +1,7 @@
 import React from "react";
 import { format } from "date-fns";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 
 const Modal = ({ date, treatment, setTreatment }) => {
     const { _id, name, slots } = treatment;
@@ -10,6 +12,7 @@ const Modal = ({ date, treatment, setTreatment }) => {
         console.log(_id, name, slot);
         setTreatment(null);
     };
+    const [user] = useAuthState(auth);
 
     return (
         <div>
