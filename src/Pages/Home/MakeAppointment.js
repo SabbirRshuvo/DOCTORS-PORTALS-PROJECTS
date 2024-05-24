@@ -16,7 +16,7 @@ const MakeAppointment = () => {
             <div className="flex-1">
                 <h3 className="text-xl text-primary ">MakeAppointment</h3>
                 <h2 className="text-3xl text-white">Make a appointment</h2>
-                <p className="text-white">
+                <p className="text-white my-7">
                     Doctors help patients to get relief from their pain. Doctors
                     play a very essential role in human life. We can say Doctors
                     are the incarnation of the god. In India, we celebrate

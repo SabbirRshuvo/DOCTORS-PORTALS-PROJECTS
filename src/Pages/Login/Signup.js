@@ -1,18 +1,19 @@
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import {
     useSignInWithFacebook,
     useSignInWithGithub,
     useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
-import { Link, useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import Google from "../Sheared/Google";
 import Facebook from "../Sheared/Facebook";
 import Github from "../Sheared/GitHub";
 
-const Login = () => {
+const Signup = () => {
     const [formData, setFormData] = useState({
+        username: "",
         email: "",
         password: "",
     });
@@ -30,7 +31,7 @@ const Login = () => {
     const handleSubmit = (e) => {
         console.log(formData);
         e.preventDefault();
-        signInWithEmailAndPassword(auth, formData.email, formData.password)
+        createUserWithEmailAndPassword(auth, formData.email, formData.password)
             .then((userInfo) => {
                 if (userInfo) {
                     setMessage("Account created successfully");
@@ -52,31 +53,44 @@ const Login = () => {
         <div className="flex justify-center items-center h-screen">
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
-                    <h2 className="text-center text-2xl font-bold">LogIn</h2>
+                    <h2 className="text-center text-2xl font-bold">SignUp</h2>
                     {message && <p>{message}</p>}
                     <form
+                        onSubmit={handleSubmit}
                         className="mt-8 space-y-6"
                         action="#"
                         method="POST"
-                        onSubmit={handleSubmit}
                     >
-                        <div className="rounded-md shadow-sm -space-y-px ">
+                        <div className="rounded-md shadow-sm -space-y-px">
+                            {/* Username field */}
+                            <div>
+                                <label htmlFor="username" className="sr-only">
+                                    Username
+                                </label>
+                                <input
+                                    onChange={handleInputChange}
+                                    id="username"
+                                    name="username"
+                                    type="text"
+                                    autoComplete="username"
+                                    required
+                                    className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm my-3"
+                                    placeholder="Username"
+                                />
+                            </div>
                             {/* Email field */}
-                            <div className="">
-                                <label
-                                    htmlFor="email-address"
-                                    className="sr-only"
-                                >
+                            <div>
+                                <label htmlFor="email" className="sr-only">
                                     Email address
                                 </label>
                                 <input
                                     onChange={handleInputChange}
-                                    id="email-address"
+                                    id="email"
                                     name="email"
                                     type="email"
                                     autoComplete="email"
                                     required
-                                    className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm my-3"
+                                    className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm my-3"
                                     placeholder="Email address"
                                 />
                             </div>
@@ -92,7 +106,7 @@ const Login = () => {
                                     type="password"
                                     autoComplete="current-password"
                                     required
-                                    className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Password"
                                 />
                             </div>
@@ -100,25 +114,19 @@ const Login = () => {
 
                         <div>
                             {/* Submit button */}
-                            <button class="btn w-full ">Log In</button>
+                            <button class="btn w-full">Sign Up</button>
                         </div>
                     </form>
                     <p>
-                        New to Doctor Portal{" "}
+                        Already Have an Account{" "}
                         <Link
                             className="text-green-500 font-serif"
-                            to="/signup "
+                            to="/login "
                         >
-                            Create new Account
+                            Login
                         </Link>{" "}
                     </p>
                     <div className="divider">OR</div>
-                    {/* <button
-                        onClick={() => signInWithGoogle()}
-                        className="btn btn-outline btn-success "
-                    >
-                        Continue With Google
-                    </button> */}
                     <button onClick={() => signInWithGoogle()}>
                         <Google />
                     </button>
@@ -134,4 +142,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Signup;

@@ -5,6 +5,7 @@ import About from "./Pages/About/About";
 import Login from "./Pages/Login/Login";
 import { Navbar } from "./Pages/Sheared/Navbar";
 import Appointment from "./Pages/Appointment/Appointment";
+import Signup from "./Pages/Login/Signup";
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
                 <Route path="/" element={<Home />}></Route>
                 <Route path="/about" element={<About />}></Route>
                 <Route path="/login" element={<Login />}></Route>
+                <Route path="/signup" element={<Signup />}></Route>
                 <Route path="/appointment" element={<Appointment />}></Route>
             </Routes>
         </div>
